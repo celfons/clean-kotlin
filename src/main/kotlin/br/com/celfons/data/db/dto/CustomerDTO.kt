@@ -15,4 +15,4 @@ data class CustomerDTO(
     override val name: String? = null,
     @Column(name = "create_at")
     override val createAt: LocalDateTime? = LocalDateTime.now()
-) : Customer()
+) : Customer
