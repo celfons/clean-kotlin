@@ -1,4 +1,4 @@
-package br.com.celfons.domain.io
+package br.com.celfons.domain
 
 interface Port
 

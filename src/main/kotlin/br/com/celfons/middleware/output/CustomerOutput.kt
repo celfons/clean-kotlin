@@ -1,7 +1,9 @@
 package br.com.celfons.middleware.output
 
-import br.com.celfons.domain.io.Command
+import br.com.celfons.domain.Command
 import br.com.celfons.middleware.entity.Customer
+
+interface CustomerOutput
 
 interface CustomerOutApi: Command<Customer> {
 

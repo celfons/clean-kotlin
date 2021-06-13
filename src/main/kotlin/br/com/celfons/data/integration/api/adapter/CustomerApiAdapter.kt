@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Component
 
 @Component
-class CustomerUpdateApiAdapter(
+class CustomerApiAdapter(
     @Autowired private var customerApiRw: CustomerApiRw
 ): CustomerOutApi {
 
