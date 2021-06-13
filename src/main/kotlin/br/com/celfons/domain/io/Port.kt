@@ -2,20 +2,14 @@ package br.com.celfons.domain.io
 
 interface Port
 
-interface PortIn<I>: Port {
+interface Command<T>: Port {
 
-    fun execute(i: I): I
-
-}
-
-interface PortOut<O>: Port {
-
-    fun execute(): O
+    fun execute(t: T): T
 
 }
 
-interface PortInOut<I, O>: Port {
+interface Query<T>: Port {
 
-    fun execute(i: I): O
+    fun execute(): T
 
 }

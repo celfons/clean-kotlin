@@ -3,10 +3,10 @@ package br.com.celfons.domain
 import java.time.LocalDateTime
 import java.util.UUID
 
-abstract class Domain {
+interface Domain {
 
-    open var id: UUID? = UUID.randomUUID()
+    val id: UUID?
 
-    var createAt: LocalDateTime? = LocalDateTime.now()
+    val createAt: LocalDateTime?
 
 }

@@ -2,20 +2,14 @@ package br.com.celfons.domain.usecases
 
 interface UseCases
 
-interface UseCasesIn<I>: UseCases {
+interface CommandCases<T>: UseCases {
 
-    fun execute(i: I): I
-
-}
-
-interface UseCasesOut<O>: UseCases {
-
-    fun execute(): O
+    fun execute(t: T): T
 
 }
 
-interface UseCasesInOut<I, O>: UseCases {
+interface QueryCases<T>: UseCases {
 
-    fun execute(i: I): O
+    fun execute(): T
 
 }

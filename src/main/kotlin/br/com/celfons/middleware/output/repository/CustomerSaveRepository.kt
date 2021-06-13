@@ -1,9 +1,9 @@
 package br.com.celfons.middleware.output.repository
 
 import br.com.celfons.domain.Customer
-import br.com.celfons.domain.io.PortIn
+import br.com.celfons.domain.io.Command
 
-interface CustomerSaveRepository: CustomerOutRepository, PortIn<Customer> {
+interface CustomerSaveRepository: CustomerPortOutRepository, Command<Customer> {
 
     override fun execute(customer : Customer): Customer
 

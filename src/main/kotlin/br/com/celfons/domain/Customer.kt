@@ -1,7 +1,7 @@
 package br.com.celfons.domain
 
-abstract class Customer: Domain() {
+interface Customer: Domain {
 
-    abstract val name: String?
+    val name: String?
 
 }
