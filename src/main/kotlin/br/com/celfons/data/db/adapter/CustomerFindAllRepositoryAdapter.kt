@@ -2,17 +2,15 @@ package br.com.celfons.data.db.adapter
 
 import br.com.celfons.data.db.CustomerRepository
 import br.com.celfons.middleware.entity.Customer
-import br.com.celfons.middleware.output.repository.CustomerFindByIdPortOutRepository
+import br.com.celfons.middleware.output.repository.CustomerFindAllRepository
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Component
-import java.util.UUID
 
 @Component
-class CustomerFindByIdPortOutRepositoryAdapter(
+class CustomerFindAllRepositoryAdapter(
     @Autowired private var repository: CustomerRepository
-): CustomerFindByIdPortOutRepository {
+): CustomerFindAllRepository {
 
-    override fun execute(id: UUID): Customer =
-        repository.findById(id).orElseThrow()
+    override fun execute(): List<Customer> = repository.findAll()
 
 }

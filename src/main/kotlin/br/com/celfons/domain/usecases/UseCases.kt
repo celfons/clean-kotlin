@@ -1,7 +1,21 @@
 package br.com.celfons.domain.usecases
 
-interface UseCases<I, O> {
+interface UseCases
 
-    fun execute(entity: I): O
+interface UseCasesIn<I>: UseCases {
+
+    fun execute(i: I): I
+
+}
+
+interface UseCasesOut<O>: UseCases {
+
+    fun execute(): O
+
+}
+
+interface UseCasesInOut<I, O>: UseCases {
+
+    fun execute(i: I): O
 
 }
