@@ -1,7 +1,6 @@
 package br.com.celfons.data.integration.api.adapter
 
 import br.com.celfons.data.integration.api.client.CustomerApiRw
-import br.com.celfons.data.integration.api.client.request.CustomerRequest
 import br.com.celfons.middleware.entity.Customer
 import br.com.celfons.middleware.output.CustomerOutApi
 import org.springframework.beans.factory.annotation.Autowired
@@ -13,8 +12,7 @@ class CustomerUpdateApiAdapter(
 ): CustomerOutApi {
 
     override fun execute(customer: Customer): Customer {
-        val request = CustomerRequest(customer.name!!)
-        customerApiRw.update(request)
+        customerApiRw.update()
         return customer
     }
 
