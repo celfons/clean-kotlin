@@ -6,6 +6,7 @@ import br.com.celfons.middleware.input.CustomerInConsumer
 import br.com.celfons.middleware.input.CustomerSaveInApi
 import br.com.celfons.middleware.input.usecases.CustomerUseCases
 import br.com.celfons.middleware.output.CustomerOutApi
+import br.com.celfons.middleware.output.CustomerOutError
 import br.com.celfons.middleware.output.repository.CustomerFindAllRepository
 import br.com.celfons.middleware.output.repository.CustomerSaveRepository
 import org.springframework.beans.factory.annotation.Autowired
@@ -15,10 +16,11 @@ abstract class CustomerService
 
 @Service
 class CustomerSaveService(
-    @Autowired private var repository: CustomerSaveRepository
+    @Autowired private var repository: CustomerSaveRepository,
+    @Autowired private var error: CustomerOutError
 ): CustomerService(), CustomerSaveInApi {
 
-    override fun execute(customer: Customer): Customer = CustomerUseCases.save(customer, repository)
+    override fun execute(customer: Customer): Customer = CustomerUseCases.save(customer, repository, error)
 
 }
 
@@ -34,9 +36,10 @@ class CustomerQueryService(
 @Service
 class CustomerConsumerUpdateService(
     @Autowired private var api: CustomerOutApi,
-    @Autowired private var repository: CustomerSaveRepository
+    @Autowired private var repository: CustomerSaveRepository,
+    @Autowired private var error: CustomerOutError
 ): CustomerService(), CustomerInConsumer {
 
-    override fun execute(customer: Customer): Customer = CustomerUseCases.update(customer, api, repository)
+    override fun execute(customer: Customer): Customer = CustomerUseCases.update(customer, api, repository, error)
 
 }

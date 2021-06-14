@@ -15,23 +15,34 @@ class CustomerFindAllUseCases(private val repository: Query<List<Customer>>): Cu
 
 }
 
-class CustomerSaveUseCases(private val repository: Command<Customer>): CustomerUseCases(), CommandCases<Customer> {
+class CustomerSaveUseCases(
+    private val repository: Command<Customer>,
+    private val error: Command<Customer>
+): CustomerUseCases(), CommandCases<Customer> {
 
     override fun execute(customer: Customer): Customer = //TODO implements business rules
-        repository.execute(customer)
-
+        try {
+            repository.execute(customer)
+        } catch (e: Exception) {
+            error.execute(customer.apply { error = e.message })
+        }
 }
 
 class CustomerUpdateUseCases(
     private val api: Command<Customer>,
-    private val repository: Command<Customer>
+    private val repository: Command<Customer>,
+    private val error: Command<Customer>
 ): CustomerUseCases(), CommandCases<Customer> {
 
     override fun execute(customer: Customer): Customer = //TODO implements business rules
-        customer.run {
-            api.execute(customer)
-        }.also {
-            repository.execute(it)
+        try {
+            customer.run {
+                api.execute(customer)
+            }.also {
+                repository.execute(it)
+            }
+        } catch (e: Exception) {
+            error.execute(customer.apply { error = e.message })
         }
 
 }

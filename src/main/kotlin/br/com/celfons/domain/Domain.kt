@@ -7,6 +7,8 @@ interface Domain {
 
     val id: UUID?
 
+    var error: String?
+
     val createAt: LocalDateTime?
 
 }

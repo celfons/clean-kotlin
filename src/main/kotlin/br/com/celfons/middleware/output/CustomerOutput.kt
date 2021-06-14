@@ -5,7 +5,13 @@ import br.com.celfons.middleware.entity.Customer
 
 interface CustomerOutput
 
-interface CustomerOutApi: Command<Customer> {
+interface CustomerOutApi: CustomerOutput, Command<Customer> {
+
+    override fun execute(customer: Customer): Customer
+
+}
+
+interface CustomerOutError: CustomerOutput, Command<Customer> {
 
     override fun execute(customer: Customer): Customer
 
